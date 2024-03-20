@@ -1,3 +1,5 @@
+package Rühmatöö;
+
 import java.util.Date;
 
 /***************************************

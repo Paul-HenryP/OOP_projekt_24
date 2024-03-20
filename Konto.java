@@ -1,3 +1,5 @@
+package Rühmatöö;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -23,7 +25,8 @@ public class Konto {
 
     private double saldo;
 
-    private ArrayList<Konto>  kõikLoodudKontod;
+    public static ArrayList<Konto>  kõikLoodudKontod = new ArrayList<>();
+//    static ArrayList<Konto> kõikLoodudKontodeList = new ArrayList<>();
 
 
     public Konto(String kasutajaNimi, String parool, String eMail, String kontoNumber, ArrayList<String> kontaktid, double saldo) {
@@ -62,7 +65,7 @@ public class Konto {
     public String getKontoNumber() {
         return kontoNumber;
     }
-    public String[][] getKontaktid() {
+    public ArrayList<String> getKontaktid() {
         return kontaktid;
     }
 
@@ -95,7 +98,7 @@ public class Konto {
         }
     }
 
-    public void looKOnto(String kasutajanimi, String parool ){
+    public static void looKOnto(String kasutajanimi, String parool ){
         Random rand = new Random();
         int rand_int = rand.nextInt(14);
         ArrayList<String> kontaktideList = new ArrayList<String>();
@@ -105,16 +108,50 @@ public class Konto {
 
     }
 
-    public boolean teeMakse(String saajaKasutajanimi, String selgitus, double summa ){
+    public boolean teeMakse(String saajaKasutajanimi, String selgitus, double summa) {
 
-        for (Konto konto : kõikLoodudKontod){ //tagastab true kui leiab konto ja lisab raha, false kui ei leia.
+        if (kõikLoodudKontod ==  null){
+            return false;
+        }
+
+        for (Konto konto : kõikLoodudKontod) { //tagastab true kui leiab konto ja lisab raha, false kui ei leia.
             if (Konto.this.getKasutajaNimi().equals(saajaKasutajanimi)) { //Kui kasutajanimi kattub sisendiga ss lisatakse summa saajale ja lahtutatakse saatja kontolt
                 this.setSaldo(summa);
 
                 return true; //Peaklassis tuleb ss saatjalt summa lahutada kui tehakse tehing true tagastusega.
-            }
-            else return false;
+            } else return false;
 
         }
+        return false;
+    }
+
+    public static boolean kontoOlemasoluKontroll(ArrayList<Konto> a, String kasutajanimi){
+        if (a ==  null){
+            return false;
+        }
+
+        for (Konto el : a) {
+            if (el.kasutajaNimi.equals(kasutajanimi)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Konto leiakonto(String kasutajanimi) {
+        if (kõikLoodudKontod ==  null){
+            return null;
+        }
+
+        for (Konto el : kõikLoodudKontod) {
+            if (el.kasutajaNimi.equals(kasutajanimi)){
+                return el;
+            }
+        }
+        return null;
+    }
+
 
 }
+
+
