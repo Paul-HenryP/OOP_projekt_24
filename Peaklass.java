@@ -52,5 +52,14 @@ public class Peaklass{
 
 
         //Valige soovitud tegevus: Makse, andmete muutmine, konto saldo, logi välja.
+
+
+        //Tehingute ajaloo vaatamise võimalus
+        if (Konto.kontoOlemasoluKontroll(Konto.kõikLoodudKontod,kasutajaNimi )) { // Kui konto olemas, siis näed tehinguid.
+            Tehingud tehingud = new Tehingud();
+            tehingud.loeFaili("tehingud.txt");
+            tehingud.kuvaTehinguteAjalugu();
+        }
     }
+
 }
