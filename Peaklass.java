@@ -57,7 +57,7 @@ public class Peaklass{
         //Tehingute ajaloo vaatamise võimalus
         if (Konto.kontoOlemasoluKontroll(Konto.kõikLoodudKontod,kasutajaNimi )) { // Kui konto olemas, siis näed tehinguid.
             Tehingud tehingud = new Tehingud();
-            tehingud.loeFaili("tehingud.txt");
+            tehingud.loeFaili("tehingute_ajalugu.txt");
             tehingud.kuvaTehinguteAjalugu();
         }
     }
