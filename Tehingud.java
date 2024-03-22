@@ -106,6 +106,7 @@ public class Tehingud {
                 System.out.println();
             }
         } catch (FileNotFoundException e) {
+            System.out.println("Faili ei leitud. ");
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
