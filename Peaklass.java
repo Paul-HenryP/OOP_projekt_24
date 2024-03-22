@@ -8,6 +8,7 @@ package Rühmatöö; /***********************************
  **********************************/
 
 import javax.swing.JOptionPane;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static Rühmatöö.Konto.*;
@@ -54,17 +55,54 @@ public class Peaklass{
         //Valige soovitud tegevus: Makse, andmete muutmine, konto saldo, logi välja.
 
         while (true){
-            String sisestaTegevus = JOptionPane.showInputDialog(null, "Valige soovitud teveus: Makse, Andmete muutmine, Saldo, Lae tegingud failist, Logi välja ", "Tegevus",
+            String sisestaTegevus = JOptionPane.showInputDialog(null, "Valige soovitud teveus: Makse, Andmete muutmine, Saldo, Lae tehingud failist, Logi välja ", "Tegevus",
                     JOptionPane.QUESTION_MESSAGE);
             System.out.println(sisestaTegevus);
             if (sisestaTegevus.equalsIgnoreCase("Logi välja")){
                 System.out.println("Nägemiseni!");
                 break;
+
+            } else if (sisestaTegevus.equalsIgnoreCase("Makse teostamine...")){
+                String sisestaSaaja = JOptionPane.showInputDialog(null, "Valige saaja ", "Saaja",
+                        JOptionPane.QUESTION_MESSAGE);
+                String sisestaSelgitus = JOptionPane.showInputDialog(null, "Valige selgitus ", "Selgitus",
+                        JOptionPane.QUESTION_MESSAGE);
+                double sisestaSumma = Double.parseDouble(JOptionPane.showInputDialog(null, "Valige summa ", "Summa",
+                        JOptionPane.QUESTION_MESSAGE));
+                if (Konto.getSaldo() - sisestaSumma >= 0){
+                    Tehing makse = new Tehing(Konto.getKasutajaNimi(), sisestaSaaja,sisestaSelgitus, sisestaSumma, LocalDateTime.now() );
+                    System.out.println("Makse teostatud."); //Peaks eelnevalt kontrollima kas on piisavalt raha.
+                    System.out.println(makse);
+                } else if (!(Konto.getSaldo() - sisestaSumma >= 0)) {
+                    System.out.println("Kontol on liiga vähe raha! ");
+                }
+            } else if (sisestaTegevus.equalsIgnoreCase("saldo")) {
+                System.out.println(Konto.getSaldo());
+            } else if ((sisestaTegevus.equalsIgnoreCase("andmete muutmine"))) {
+                String sisestaMuudetav = JOptionPane.showInputDialog(null, "Mida soovite muuta? Valikud: parool, e-mail, kasutajanimi.", "Muuda andmeid",
+                        JOptionPane.QUESTION_MESSAGE);
+                if (sisestaMuudetav.equalsIgnoreCase("parool")){
+                    String sisestaUus = JOptionPane.showInputDialog(null, "Sisestage uus väärtus.", "Muuda parooli",
+                            JOptionPane.QUESTION_MESSAGE);
+                    Konto.setParool(sisestaUus);
+                } else if (sisestaMuudetav.equalsIgnoreCase("e-mail")){
+                    String sisestaUus = JOptionPane.showInputDialog(null, "Sisestage uus aadress.", "Muuda e-maili aadressi",
+                            JOptionPane.QUESTION_MESSAGE);
+                    Konto.seteMail(sisestaUus);
+
+                } else if (sisestaMuudetav.equalsIgnoreCase("kasutajanimi")){
+                    String sisestaUus = JOptionPane.showInputDialog(null, "Sisestage uus kasutajanimi.", "Muuda kasutajanime",
+                            JOptionPane.QUESTION_MESSAGE);
+                    Konto.setKasutajaNimi(sisestaUus);
+
+                } //Siia else-if'iga lisada juurde faili laadimise tegevus nagu eelnevad!
+
+
             }
 
             //Tehingute ajaloo vaatamise võimalus
             //Kui kasutaja soovib, siis loetakse tehingute ajalugu failist.
-            if (Konto.kontoOlemasoluKontroll(kõikLoodudKontod, sisestatakseKasutajanimi) && sisestaTegevus.equals("Lae tegingud failist")) { // Kui konto olemas, siis näed tehinguid. // if (sisu) copytud ülevalt.
+            if (Konto.kontoOlemasoluKontroll(kõikLoodudKontod, sisestatakseKasutajanimi) && sisestaTegevus.equalsIgnoreCase("lae tegingud failist")) { // Kui konto olemas, siis näed tehinguid. // if (sisu) copytud ülevalt.
                 Tehingud tehingud = new Tehingud();
                 tehingud.loeFaili("tehingud.txt");
                 tehingud.kuvaTehinguteAjalugu();

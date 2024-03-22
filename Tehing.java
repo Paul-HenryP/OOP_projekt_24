@@ -47,4 +47,9 @@ public class Tehing {
     public static LocalDateTime getKuupäev() {
         return kuupäev;
     }
+
+
+    public String toString() {
+        return "Tehing (saatja: " + saatja + ", saaja: "+saaja + ", summa: "+ summa+". Kuupäev ja kellaeg: "+ kuupäev;
+    }
 }

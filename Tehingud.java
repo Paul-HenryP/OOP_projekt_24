@@ -23,13 +23,14 @@ public class Tehingud {
     public Tehingud() {
         this.tehingud = new ArrayList<>();
     }
+
     // Meetod uue tehingu lisamiseks ajalukku
-    public void lisaTehing(String kasutajaNimi, String saaja, String selgitus, double summa, LocalDateTime kuupäev) {
-        Tehing tehing = new Tehing(kasutajaNimi, saaja, selgitus, summa, kuupäev);
+    public void lisaTehing(String kasutajaNimi, String saaja, String selgitus, double summa, LocalDateTime kuupäev) { //Paul: Võiks kasutada lihtsalt Tehingu objekti parameetrina.
+        Tehing tehing = new Tehing(kasutajaNimi, saaja, selgitus, summa, kuupäev); // Paul: Siis lisada faili tehingu toString() Tulemus.
         tehingud.add(tehing);
     }
-    // Meetod tehingute saamiseks
 
+    // Meetod tehingute saamiseks
     public ArrayList<Tehing> getTehinguteAjalugu() {
         return tehingud;
     }
@@ -37,6 +38,7 @@ public class Tehingud {
     // Tehingute ajaloo kuvamise funktsioon
     public void kuvaTehinguteAjalugu() {
         for (Tehing tehing : tehingud) {
+            //Paul: Siia lihtsalt toString meetodi väljakutse? 1 reaga.
             System.out.println("** Tehingu kirjeldus **");
             System.out.println("Saatja: " + Konto.getKasutajaNimi());
             System.out.println("Saaja: " + Tehing.getSaaja());
@@ -56,6 +58,7 @@ public class Tehingud {
 
             //Tehingu info faili salvestamine
             for (Tehing tehing: tehingud) {
+                //Paul: Siia samuti 1 reaga tostring väljakutse.
                 printWriter.println("** Tehingu kirjeldus **");
                 printWriter.println("Saatja: " + Konto.getKasutajaNimi());
                 printWriter.println("Saaja: " + tehing.getSaaja());

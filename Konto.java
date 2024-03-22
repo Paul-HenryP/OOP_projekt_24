@@ -16,14 +16,14 @@ import java.util.Random;
 
 public class Konto {
     public static String kasutajaNimi; // 1
-    private String parool; // 2
-    private String eMail; // 3
+    private static String parool; // 2
+    private static String eMail; // 3
 
-    private String kontoNumber;
+    private static String kontoNumber;
 
-    private ArrayList<String>  kontaktid;
+    private static ArrayList<String>  kontaktid;
 
-    private double saldo;
+    private static double saldo;
 
     public static ArrayList<Konto>  kõikLoodudKontod = new ArrayList<>();
 //    static ArrayList<Konto> kõikLoodudKontodeList = new ArrayList<>();
@@ -42,24 +42,24 @@ public class Konto {
         return kasutajaNimi;
     }
 
-    public void setKasutajaNimi(String kasutajaNimi) {
-        this.kasutajaNimi = kasutajaNimi;
+    public static void setKasutajaNimi(String kasutajaNimi) {
+        Konto.kasutajaNimi = kasutajaNimi;
     }
 
     public String getParool() {
         return parool;
     }
 
-    public void setParool(String parool) {
-        this.parool = parool;
+    public static void setParool(String parool) {
+        Konto.parool = parool;
     }
 
     public String geteMail() {
         return eMail;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public static void seteMail(String eMail) {
+        Konto.eMail = eMail;
     }
 
     public String getKontoNumber() {
@@ -69,7 +69,7 @@ public class Konto {
         return kontaktid;
     }
 
-    public double getSaldo() {
+    public static double getSaldo() {
         return saldo;
     }
 
@@ -79,12 +79,12 @@ public class Konto {
 
     @Override
     public String toString() {
-        return "Konto{" +
-                "kasutajaNimi='" + kasutajaNimi + '\'' +
-                ", parool='" + parool + '\'' +
-                ", eMail='" + eMail + '\'' +
-                ", kontoNumber='" + kontoNumber + '\'' +
-                '}';
+        return "Konto: " +
+                "kasutajaNimi: '" + kasutajaNimi + '\'' +
+                ", parool: '" + parool + '\'' +
+                ", eMail: '" + eMail + '\'' +
+                ", kontoNumber: '" + kontoNumber + '\'' +
+                ' ';
     }
 
     public void muudaAndmeid(int x, String uus){ // X asemel siis mida soovitakse uuendada kas 1, 2 või 3 ja uued andmed teise parameetriga.
