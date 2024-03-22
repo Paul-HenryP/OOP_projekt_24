@@ -1,10 +1,10 @@
 package Rühmatöö;
 
 import java.io.*;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 import java.util.Comparator;
 
 /***********************************
@@ -37,10 +37,10 @@ public class Tehingud {
         for (Tehing tehing : tehingud) {
             System.out.println("** Tehingu kirjeldus **");
             System.out.println("Saatja: " + Konto.getKasutajaNimi());
-            System.out.println("Saaja: " + Tehing.getSaaja());
-            System.out.println("Selgitus: " + Tehing.getSelgitus());
-            System.out.println("Summa: " + Tehing.getSumma());
-            System.out.println("Kuupäev: " + Tehing.getKuupäev());
+            System.out.println("Saaja: " + tehing.getSaaja());
+            System.out.println("Selgitus: " + tehing.getSelgitus());
+            System.out.println("Summa: " + tehing.getSumma());
+            System.out.println("Kuupäev: " + tehing.getKuupäev());
             System.out.println();
 
         }
@@ -51,17 +51,22 @@ public class Tehingud {
             FileWriter fileWriter = new FileWriter(new File(failinimi), true);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+            Set<String> unikaalsedTehingud = new HashSet<>();
 
             //Tehingu info faili salvestamine
             for (Tehing tehing: tehingud) {
-                printWriter.println("** Tehingu kirjeldus **");
-                printWriter.println("Saatja: " + Konto.getKasutajaNimi());
-                printWriter.println("Saaja: " + tehing.getSaaja());
-                printWriter.println("Selgitus: " + tehing.getSelgitus());
-                printWriter.println("Summa: " + tehing.getSumma());
-                printWriter.println("Kuupäev: " + formatter.format(tehing.getKuupäev()));
-                printWriter.println();
+                String tehinguInfo = "Saatja: " + Konto.getKasutajaNimi() +
+                        "\nSaaja: " + tehing.getSaaja() +
+                        "\nSelgitus: " + tehing.getSelgitus() +
+                        "\nSumma: " + tehing.getSumma() +
+                        "\nKuupäev: " + formatter.format(tehing.getKuupäev());
+                if (unikaalsedTehingud.add(tehinguInfo)) {
+                    printWriter.println("** Tehingu Kirjeldus **");
+                    printWriter.println(tehinguInfo);
+                    printWriter.println();
+                }
             }
+            sorteeriTehingudKuupäevaJärgi(tehingud);
             printWriter.close();
             System.out.println("Tehingu info on salvestatud faili " + failinimi);
         } catch (IOException e) {
@@ -89,9 +94,7 @@ public class Tehingud {
                 tehingud.add(new Tehing(kasutajaNimi, saaja, selgitus, summa, kuupäev));
             }
             reader.close();
-
-            // Sorteeritakse tehingud kuupäeva järgi
-            Collections.sort(tehingud, (t1, t2) -> t2.getKuupäev().compareTo(t1.getKuupäev()));
+            tehingud.sort(Comparator.comparing(Tehing::getKuupäev));
 
             // Väljastatakse tehingud
             for (Tehing tehing : tehingud) {
@@ -109,5 +112,16 @@ public class Tehingud {
             throw new RuntimeException(e);
         }
     }
+    public void sorteeriTehingudKuupäevaJärgi(ArrayList<Tehing> tehingud) {
+        LocalDateTime praeguneHetk = LocalDateTime.now();
+        this.tehingud.sort(Comparator.comparingLong(t -> Duration.between(t.getKuupäev(), praeguneHetk).toMillis()));
+    /*public void sorteeriTehingudKuupäevaJärgi() {
+        Collections.sort(tehingud, new Comparator<Tehing>() {
+            @Override
+            public int compare(Tehing t1, Tehing t2) {
+                return t2.getKuupäev().compareTo(t1.getKuupäev());
+            }
+        });
+    */}
 
 }
