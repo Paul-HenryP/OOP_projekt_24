@@ -1,0 +1,28 @@
+** Tehingu kirjeldus **
+Saatja: null
+Saaja: Kasutaja1
+Selgitus: Makse
+Summa: 70.0
+Kuupäev: 23.02.2024 12:00:00
+
+** Tehingu kirjeldus **
+Saatja: null
+Saaja: Kasutaja1
+Selgitus: Makse
+Summa: 70.0
+Kuupäev: 23.02.2024 12:00:00
+
+** Tehingu kirjeldus **
+Saatja: null
+Saaja: Kasutaja1
+Selgitus: Makse
+Summa: 70.0
+Kuupäev: 23.02.2024 12:00:00
+
+** Tehingu kirjeldus **
+Saatja: null
+Saaja: Kasutaja1
+Selgitus: Makse
+Summa: 70.0
+Kuupäev: 23.02.2024 12:00:00
+

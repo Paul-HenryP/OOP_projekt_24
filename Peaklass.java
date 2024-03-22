@@ -46,7 +46,9 @@ public class Peaklass{
             }
         }
 
-
+        String sisestaTegevus = JOptionPane.showInputDialog(null, "Valige soovitud teveus: Makse, Andmete muutmine, Saldo, Lae tegingud failist, Logi välja ", "Tegevus",
+                JOptionPane.QUESTION_MESSAGE);
+        System.out.println(sisestaTegevus);
 
         //Kontroll kas konto isend on olemas, kui pole siis luuakse. Randomiga genereeritakse konto number kindlas pikkuses.
 
@@ -57,8 +59,8 @@ public class Peaklass{
 
 
         //Tehingute ajaloo vaatamise võimalus
-
-        if (Konto.kontoOlemasoluKontroll(kõikLoodudKontod, sisestatakseKasutajanimi)) { // Kui konto olemas, siis näed tehinguid. // if (sisu) copytud ülevalt.
+        //Kui kasutaja soovib, siis loetakse tehingute ajalugu failist.
+        if (Konto.kontoOlemasoluKontroll(kõikLoodudKontod, sisestatakseKasutajanimi) && sisestaTegevus.equals("Lae tegingud failist")) { // Kui konto olemas, siis näed tehinguid. // if (sisu) copytud ülevalt.
             Tehingud tehingud = new Tehingud();
             tehingud.loeFaili("tehingud.txt");
             tehingud.kuvaTehinguteAjalugu();
