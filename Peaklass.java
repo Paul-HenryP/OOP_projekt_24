@@ -44,7 +44,10 @@ public class Peaklass{
                 Konto.looKOnto(sisestatakseKasutajanimi, sisestatakseParool);
                 System.out.println("Teie andmed on järgnevad: ");
                 System.out.println(leiakonto(sisestatakseKasutajanimi));
+            } else {
+                System.out.println("Nägemist! ");
             }
+
         }
 
 
@@ -62,7 +65,8 @@ public class Peaklass{
                 System.out.println("Nägemiseni!");
                 break;
 
-            } else if (sisestaTegevus.equalsIgnoreCase("Makse teostamine...")){
+            } else if (sisestaTegevus.equalsIgnoreCase("makse")){
+                System.out.println("Makse teostamine...");
                 String sisestaSaaja = JOptionPane.showInputDialog(null, "Valige saaja ", "Saaja",
                         JOptionPane.QUESTION_MESSAGE);
                 String sisestaSelgitus = JOptionPane.showInputDialog(null, "Valige selgitus ", "Selgitus",
@@ -95,10 +99,11 @@ public class Peaklass{
                             JOptionPane.QUESTION_MESSAGE);
                     Konto.setKasutajaNimi(sisestaUus);
 
-                } //Siia else-if'iga lisada juurde faili laadimise tegevus nagu eelnevad!
+                }
+                System.out.println("Teie andmed on järgnevad: ");
+                System.out.println(leiakonto(sisestatakseKasutajanimi));
 
-
-            }
+            }//Siia else-if'iga lisada juurde faili laadimise tegevus nagu eelnevad!
 
             //Tehingute ajaloo vaatamise võimalus
             //Kui kasutaja soovib, siis loetakse tehingute ajalugu failist.
