@@ -29,9 +29,11 @@ public class Tehingud {
         tehingud.add(tehing);
     }
     // Meetod tehingute saamiseks
+
     public ArrayList<Tehing> getTehinguteAjalugu() {
         return tehingud;
     }
+
     // Tehingute ajaloo kuvamise funktsioon
     public void kuvaTehinguteAjalugu() {
         for (Tehing tehing : tehingud) {

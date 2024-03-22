@@ -31,9 +31,9 @@ public class Peaklass{
 
         System.out.println(sisestatakseParool);
 
-        if (Konto.kontoOlemasoluKontroll(kõikLoodudKontod, sisestatakseKasutajanimi) ){
+        if (Konto.kontoOlemasoluKontroll(kõikLoodudKontod, sisestatakseKasutajanimi) ){ //Kas konto on olemas.
             System.out.println("Konto leitud! Olete sisse logitud.");
-        } else if (!Konto.kontoOlemasoluKontroll(kõikLoodudKontod, sisestatakseKasutajanimi)){
+        } else if (!Konto.kontoOlemasoluKontroll(kõikLoodudKontod, sisestatakseKasutajanimi)){ //Kui pole.
             System.out.println("Kontot ei leitud. Kas soovite uue konto registreerida? ");
             String kontoLuua = JOptionPane.showInputDialog(null, " Kas soovite uue konto registreerida? Jah/Ei ", "Kontot ei leitud.",
                     JOptionPane.QUESTION_MESSAGE);
@@ -54,8 +54,11 @@ public class Peaklass{
         //Valige soovitud tegevus: Makse, andmete muutmine, konto saldo, logi välja.
 
 
+
+
         //Tehingute ajaloo vaatamise võimalus
-        if (Konto.kontoOlemasoluKontroll(Konto.kõikLoodudKontod,kasutajaNimi )) { // Kui konto olemas, siis näed tehinguid.
+
+        if (Konto.kontoOlemasoluKontroll(kõikLoodudKontod, sisestatakseKasutajanimi)) { // Kui konto olemas, siis näed tehinguid. // if (sisu) copytud ülevalt.
             Tehingud tehingud = new Tehingud();
             tehingud.loeFaili("tehingud.txt");
             tehingud.kuvaTehinguteAjalugu();

@@ -15,7 +15,7 @@ import java.util.Random;
 
 
 public class Konto {
-    public String kasutajaNimi; // 1
+    public static String kasutajaNimi; // 1
     private String parool; // 2
     private String eMail; // 3
 
@@ -38,7 +38,7 @@ public class Konto {
         this.saldo = saldo;
     }
 
-    public String getKasutajaNimi() {
+    public static String getKasutajaNimi() {
         return kasutajaNimi;
     }
 
