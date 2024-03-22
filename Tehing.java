@@ -1,6 +1,7 @@
+
 package Rühmatöö;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /***************************************
  *
@@ -14,13 +15,13 @@ import java.util.Date;
 
 // Tehingu objekti klass
 public class Tehing {
-    private static String saatja;
-    private static String saaja;
-    private static String selgitus;
-    private static double summa;
-    private static Date kuupäev;
+    private  String saatja;
+    private  String saaja;
+    private  String selgitus;
+    private  double summa;
+    private  LocalDateTime kuupäev;
 
-    public Tehing(String saatja, String saaja, String selgitus, double summa, Date kuupäev) {
+    public Tehing(String saatja, String saaja, String selgitus, double summa, LocalDateTime kuupäev) {
         this.saatja = saatja;
         this.saaja = saaja;
         this.selgitus = selgitus;
@@ -28,23 +29,23 @@ public class Tehing {
         this.kuupäev = kuupäev;
     }
 
-    public static String getSaatja() {
+    public  String getSaatja() {
         return saatja;
     }
 
-    public static String getSaaja() {
+    public  String getSaaja() {
         return saaja;
     }
 
-    public static String getSelgitus() {
+    public  String getSelgitus() {
         return selgitus;
     }
 
-    public static double getSumma() {
+    public  double getSumma() {
         return summa;
     }
 
-    public static Date getKuupäev() {
+    public LocalDateTime getKuupäev() {
         return kuupäev;
     }
 }
