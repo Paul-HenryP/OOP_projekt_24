@@ -41,8 +41,10 @@ public class Tehingud {
         return kasutajaTehingud;
     }
 
+
+
     // Meetod tehingute saamiseks
-    public ArrayList<Tehing> getTehinguteAjalugu() {
+    public static ArrayList<Tehing> getTehinguteAjalugu() {
         return tehingud;
     }
 
