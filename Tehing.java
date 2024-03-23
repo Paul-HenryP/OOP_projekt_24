@@ -1,4 +1,3 @@
-
 package Rühmatöö;
 
 import java.time.LocalDateTime;
@@ -15,11 +14,11 @@ import java.time.LocalDateTime;
 
 // Tehingu objekti klass
 public class Tehing {
-    private  String saatja;
-    private  String saaja;
-    private  String selgitus;
-    private  double summa;
-    private  LocalDateTime kuupäev;
+    static String saatja;
+    private static String saaja;
+    private static String selgitus;
+    private static double summa;
+    private static LocalDateTime kuupäev;
 
     public Tehing(String saatja, String saaja, String selgitus, double summa, LocalDateTime kuupäev) {
         this.saatja = saatja;
@@ -29,23 +28,28 @@ public class Tehing {
         this.kuupäev = kuupäev;
     }
 
-    public  String getSaatja() {
+    public static String getSaatja() {
         return saatja;
     }
 
-    public  String getSaaja() {
+    public static String getSaaja() {
         return saaja;
     }
 
-    public  String getSelgitus() {
+    public static String getSelgitus() {
         return selgitus;
     }
 
-    public  double getSumma() {
+    public static double getSumma() {
         return summa;
     }
 
-    public LocalDateTime getKuupäev() {
+    public static LocalDateTime getKuupäev() {
         return kuupäev;
+    }
+
+
+    public String toString() {
+        return "Tehing (saatja: " + saatja + ", saaja: "+saaja + ", selgitus: " + selgitus + ", summa: "+ summa+". Kuupäev ja kellaeg: "+ kuupäev;
     }
 }
