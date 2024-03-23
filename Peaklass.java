@@ -126,37 +126,37 @@ private static void laeVarasemadTehingud(String kasutajanimi) {
     if (fail.exists()) { // Kontrollime, kas fail eksisteerib
         try (BufferedReader reader = new BufferedReader(new FileReader(failinimi))) {
             String line;
-            ArrayList<Tehing> kasutajaTehingud = new ArrayList<>();
+            StringBuilder tehinguteTekst = new StringBuilder();
 
+            // Laeme kõik tehingud failist
             while ((line = reader.readLine()) != null) {
                 if (line.equals("** Tehingu kirjeldus **")) {
                     // Loeme failist iga tehingu kirjelduse
                     String saatja = reader.readLine().substring(8); // "Saatja: " jäetakse välja
                     String saaja = reader.readLine().substring(7); // "Saaja: " jäetakse välja
-                    String selgitus = reader.readLine().substring(10); // "Selgitus: " jäetakse välja
-                    double summa = Double.parseDouble(reader.readLine().substring(7)); // "Summa: " jäetakse välja
-                    LocalDateTime kuupäev = LocalDateTime.parse(reader.readLine().substring(9), DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")); // "Kuupäev: " jäetakse välja
 
-                    // Kontrollime, kas tehingu saatja või saaja on sisestatud kasutajanimi
+                    // Kontrollime, kas saatja või saaja on "Kelder"
                     if (saatja.equalsIgnoreCase(kasutajanimi) || saaja.equalsIgnoreCase(kasutajanimi)) {
-                        kasutajaTehingud.add(new Tehing(saatja, saaja, selgitus, summa, kuupäev));
+                        // Lisame  kogu tehingu kirjelduse
+                        tehinguteTekst.append("** Tehingu kirjeldus **\n");
+                        tehinguteTekst.append("Saatja: ").append(saatja).append("\n");
+                        tehinguteTekst.append("Saaja: " ).append(saaja).append("\n");
+                        tehinguteTekst.append("Selgitus: " ).append(reader.readLine().substring(10)).append("\n"); // "Selgitus: " jäetakse välja
+                        tehinguteTekst.append("Summa: " ).append(Double.parseDouble(reader.readLine().substring(7))).append("\n"); // "Summa: " jäetakse välja
+                        tehinguteTekst.append("Kuupäev: ").append(reader.readLine().substring(9)).append("\n\n"); // "Kuupäev: " jäetakse välja
+                        System.out.println(); // Tühirida eraldamiseks
+                    } else {
+                        // Loeme ülejäänud kirjelduse, et liikuda järgmise tehingu juurde
+                        reader.readLine(); // Selgitus
+                        reader.readLine(); // Summa
+                        reader.readLine(); // Kuupäev
                     }
                 }
             }
-
-            if (!kasutajaTehingud.isEmpty()) {
-                StringBuilder tehinguteTekst = new StringBuilder();
-                for (Tehing tehing : kasutajaTehingud) {
-                    tehinguteTekst.append("** Tehingu kirjeldus **\n");
-                    tehinguteTekst.append("Saatja: ").append(tehing.getSaatja()).append("\n");
-                    tehinguteTekst.append("Saaja: ").append(tehing.getSaaja()).append("\n");
-                    tehinguteTekst.append("Selgitus: ").append(tehing.getSelgitus()).append("\n");
-                    tehinguteTekst.append("Summa: ").append(tehing.getSumma()).append("\n");
-                    tehinguteTekst.append("Kuupäev: ").append(tehing.getKuupäev()).append("\n\n");
-                }
+            if (tehinguteTekst.length() > 0) {
                 JOptionPane.showMessageDialog(null, "Teie tehingud: \n" + tehinguteTekst.toString(), "Tehingud", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(null, "Teil pole varasemaid tehinguid", "Tehingud", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Teil pole varaseimaid tehinguid!", "Tehingud", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (IOException e) {
             System.out.println("Viga faili lugemisel: " + e.getMessage());
@@ -167,3 +167,4 @@ private static void laeVarasemadTehingud(String kasutajanimi) {
         JOptionPane.showMessageDialog(null, "Teie saldo: " + Konto.getSaldo(), "Saldo", JOptionPane.INFORMATION_MESSAGE);
     }
 }}
+
