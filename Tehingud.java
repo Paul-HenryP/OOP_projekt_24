@@ -38,7 +38,7 @@ public class Tehingud {
     // Tehingute ajaloo kuvamise funktsioon
     public void kuvaTehinguteAjalugu() {
         for (Tehing tehing : tehingud) {
-            //Paul: Siia lihtsalt toString meetodi väljakutse? 1 reaga.
+            //Paul: Siia lihtsalt toString meetodi väljakutse. 1 reaga.
             System.out.println("** Tehingu kirjeldus **");
             System.out.println("Saatja: " + Konto.getKasutajaNimi());
             System.out.println("Saaja: " + Tehing.getSaaja());

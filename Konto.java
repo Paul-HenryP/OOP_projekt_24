@@ -79,12 +79,12 @@ public class Konto {
 
     @Override
     public String toString() {
-        return "Konto: " +
+        return "Konto( " +
                 "kasutajaNimi: '" + kasutajaNimi + '\'' +
                 ", parool: '" + parool + '\'' +
                 ", eMail: '" + eMail + '\'' +
                 ", kontoNumber: '" + kontoNumber + '\'' +
-                ' ';
+                ')';
     }
 
     public void muudaAndmeid(int x, String uus){ // X asemel siis mida soovitakse uuendada kas 1, 2 või 3 ja uued andmed teise parameetriga.
@@ -99,10 +99,17 @@ public class Konto {
     }
 
     public static void looKOnto(String kasutajanimi, String parool ){
-        Random rand = new Random();
-        int rand_int = rand.nextInt(14);
         ArrayList<String> kontaktideList = new ArrayList<String>();
-        Konto isik =  new Konto(kasutajanimi, parool, " ", "EE1088"+String.valueOf(rand_int), kontaktideList, 0); // Loob konto.
+
+        String kontonrViimased8Numbrit = "";
+        for (int i = 0; i < 8; i++) { //Genereerib viimased 8 numbrit konto numbrile.
+            Random rand = new Random();
+            int rand_int = rand.nextInt(14);
+
+            kontonrViimased8Numbrit += String.valueOf(rand_int);
+        }
+
+        Konto isik =  new Konto(kasutajanimi, parool, " ", "EE1088"+kontonrViimased8Numbrit, kontaktideList, 0); // Loob konto.
 
         kõikLoodudKontod.add(isik);
 

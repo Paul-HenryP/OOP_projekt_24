@@ -58,7 +58,7 @@ public class Peaklass{
         //Valige soovitud tegevus: Makse, andmete muutmine, konto saldo, logi välja.
 
         while (true){
-            String sisestaTegevus = JOptionPane.showInputDialog(null, "Valige soovitud teveus: Makse, Andmete muutmine, Saldo, Lae tehingud failist, Logi välja ", "Tegevus",
+            String sisestaTegevus = JOptionPane.showInputDialog(null, "Valige soovitud teveus: Makse, Andmete muutmine, Saldo, Lae varasemad tehingud failist (Pole veel saadaval), Logi välja ", "Tegevus",
                     JOptionPane.QUESTION_MESSAGE);
             System.out.println(sisestaTegevus);
             if (sisestaTegevus.equalsIgnoreCase("Logi välja")){
@@ -81,6 +81,8 @@ public class Peaklass{
                     System.out.println("Kontol on liiga vähe raha! ");
                 }
             } else if (sisestaTegevus.equalsIgnoreCase("saldo")) {
+                JOptionPane.showMessageDialog(null, "Teie saldo: "+Konto.getSaldo(), "Saldo",
+                        JOptionPane.INFORMATION_MESSAGE);
                 System.out.println(Konto.getSaldo());
             } else if ((sisestaTegevus.equalsIgnoreCase("andmete muutmine"))) {
                 String sisestaMuudetav = JOptionPane.showInputDialog(null, "Mida soovite muuta? Valikud: parool, e-mail, kasutajanimi.", "Muuda andmeid",
