@@ -105,7 +105,7 @@ public class Peaklass{
                 System.out.println("Teie andmed on järgnevad: ");
                 System.out.println(leiakonto(sisestatakseKasutajanimi));
 
-            }//Siia else-if'iga lisada juurde faili laadimise tegevus nagu eelnevad!
+            }//Siia else-if'iga lisada juurde teisi tegevuste variante kui on veel midagi.
 
             //Tehingute ajaloo vaatamise võimalus
             //Peaks tegema iga sisse logimise algul automaatse failist lugemise.
