@@ -108,7 +108,7 @@ public class Peaklass{
             }//Siia else-if'iga lisada juurde faili laadimise tegevus nagu eelnevad!
 
             //Tehingute ajaloo vaatamise võimalus
-            //Kui kasutaja soovib, siis loetakse tehingute ajalugu failist. //Peaks tegema iga sisse logimise algul vb.
+            //Peaks tegema iga sisse logimise algul automaatse failist lugemise.
             if (Konto.kontoOlemasoluKontroll(kõikLoodudKontod, sisestatakseKasutajanimi) && sisestaTegevus.equalsIgnoreCase("lae tehingud failist")) { // Kui konto olemas, siis näed tehinguid. // if (sisu) copytud ülevalt.
                 Tehingud tehingud = new Tehingud();
                 tehingud.loeFaili("tehingud.txt");
