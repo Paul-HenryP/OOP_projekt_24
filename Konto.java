@@ -1,4 +1,3 @@
-
 package Rühmatöö;
 
 import java.util.ArrayList;
@@ -17,14 +16,14 @@ import java.util.Random;
 
 public class Konto {
     public static String kasutajaNimi; // 1
-    private String parool; // 2
-    private String eMail; // 3
+    private static String parool; // 2
+    private static String eMail; // 3
 
-    private String kontoNumber;
+    private static String kontoNumber;
 
-    private ArrayList<String>  kontaktid;
+    private static ArrayList<String>  kontaktid;
 
-    private double saldo;
+    private static double saldo;
 
     public static ArrayList<Konto>  kõikLoodudKontod = new ArrayList<>();
 //    static ArrayList<Konto> kõikLoodudKontodeList = new ArrayList<>();
@@ -43,24 +42,24 @@ public class Konto {
         return kasutajaNimi;
     }
 
-    public void setKasutajaNimi(String kasutajaNimi) {
-        this.kasutajaNimi = kasutajaNimi;
+    public static void setKasutajaNimi(String kasutajaNimi) {
+        Konto.kasutajaNimi = kasutajaNimi;
     }
 
     public String getParool() {
         return parool;
     }
 
-    public void setParool(String parool) {
-        this.parool = parool;
+    public static void setParool(String parool) {
+        Konto.parool = parool;
     }
 
     public String geteMail() {
         return eMail;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public static void seteMail(String eMail) {
+        Konto.eMail = eMail;
     }
 
     public String getKontoNumber() {
@@ -70,7 +69,7 @@ public class Konto {
         return kontaktid;
     }
 
-    public double getSaldo() {
+    public static double getSaldo() {
         return saldo;
     }
 
@@ -80,12 +79,12 @@ public class Konto {
 
     @Override
     public String toString() {
-        return "Konto{" +
-                "kasutajaNimi='" + kasutajaNimi + '\'' +
-                ", parool='" + parool + '\'' +
-                ", eMail='" + eMail + '\'' +
-                ", kontoNumber='" + kontoNumber + '\'' +
-                '}';
+        return "Konto( " +
+                "kasutajaNimi: '" + kasutajaNimi + '\'' +
+                ", parool: '" + parool + '\'' +
+                ", eMail: '" + eMail + '\'' +
+                ", kontoNumber: '" + kontoNumber + '\'' +
+                ')';
     }
 
     public void muudaAndmeid(int x, String uus){ // X asemel siis mida soovitakse uuendada kas 1, 2 või 3 ja uued andmed teise parameetriga.
@@ -100,10 +99,17 @@ public class Konto {
     }
 
     public static void looKOnto(String kasutajanimi, String parool ){
-        Random rand = new Random();
-        int rand_int = rand.nextInt(14);
         ArrayList<String> kontaktideList = new ArrayList<String>();
-        Konto isik =  new Konto(kasutajanimi, parool, " ", "EE1088"+String.valueOf(rand_int), kontaktideList, 0); // Loob konto.
+
+        String kontonrViimased8Numbrit = "";
+        for (int i = 0; i < 8; i++) { //Genereerib viimased 8 numbrit konto numbrile.
+            Random rand = new Random();
+            int rand_int = rand.nextInt(14);
+
+            kontonrViimased8Numbrit += String.valueOf(rand_int);
+        }
+
+        Konto isik =  new Konto(kasutajanimi, parool, " ", "EE1088"+kontonrViimased8Numbrit, kontaktideList, 0); // Loob konto.
 
         kõikLoodudKontod.add(isik);
 
@@ -154,5 +160,4 @@ public class Konto {
 
 
 }
-
 
