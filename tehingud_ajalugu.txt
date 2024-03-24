@@ -1,9 +1,2 @@
 
 
-** Tehingu kirjeldus **
-Saatja: paul
-Saaja: pets
-Selgitus: niisama
-Summa: 0.0
-Kuupäev: 24.03.2024 11:21:40
-
