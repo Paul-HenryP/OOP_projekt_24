@@ -6,8 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static Rühmatöö.Tehing.saatja;
-
 /***********************************
  *
  *
@@ -74,7 +72,7 @@ public class Tehingud {
                 //Paul: Siia samuti 1 reaga tostring väljakutse.
                 printWriter.println("** Tehingu kirjeldus **");
                 printWriter.println("Saatja: " + Konto.getKasutajaNimi());
-                printWriter.println("Saaja: " + tehing.getSaaja());
+                printWriter.println("Saaja: " + tehing.getSaaja());;
                 printWriter.println("Selgitus: " + tehing.getSelgitus());
                 printWriter.println("Summa: " + tehing.getSumma());
                 printWriter.println("Kuupäev: " + formatter.format(tehing.getKuupäev()));
