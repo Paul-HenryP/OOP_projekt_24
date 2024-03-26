@@ -1,5 +1,8 @@
 package Rühmatöö;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -157,7 +160,27 @@ public class Konto {
         }
         return null;
     }
+    public static void kirjutaFaili(String kasutajanimi, String parool) {
+        Paroolikontrollija.looFail(kasutajanimi, parool, "kasutajad.txt");
 
-
+    }
+    public static boolean kasutajanimiVaba(String kasutajanimi) {
+        String failinimi = "kasutajad.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(failinimi))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] kasutajaJaParool = line.split(":");
+                if (kasutajaJaParool.length == 2) {
+                    String kasutajaFailist = kasutajaJaParool[0];
+                    if (kasutajaFailist.equals(kasutajanimi)) {
+                        return false; // Kasutajanimi on juba võetud
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Viga faili lugemisel: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+        return true; // Kasutajanimi on vaba
+    }
 }
-
